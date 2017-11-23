@@ -4,7 +4,7 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
-axios.defaults.baseURL = 'http://localhost:7000/api'
+axios.defaults.baseURL = 'https://api.aiubcommunity.com'
 
 // ##########
 // remove 1 hour old user + section data stored in localstorage
@@ -158,14 +158,12 @@ export const store = new Vuex.Store({
       axios.post('/sections'
       ).then(
         (response) => {
-          console.log(response.data)
           commit('setLoadings', {'item': 'loadAllSections', 'value': false})
           commit('setAllSectionsData', response.data.sections)
         }
       ).catch(
-        (error) => {
+        () => {
           commit('setLoadings', {'item': 'loadAllSections', 'value': false})
-          console.log(error)
         }
       )
     },
@@ -178,7 +176,6 @@ export const store = new Vuex.Store({
         {id: payload.id, pass: payload.pass}
       ).then(
         (response) => {
-          console.log(response.data)
           commit('setLoadings', {'item': 'axios', 'value': false})
           commit('setAuthUser', {'data': response.data, 'remember': payload.remember})
           commit('setOpenDialogs', {'dialog': 'signIn', 'open': false})
@@ -206,8 +203,8 @@ export const store = new Vuex.Store({
     },
     signOut ({commit, state}) {
       axios.post('/auth/user/signout?token=' + state.authUser.token
-      ).then((response) => { console.log(response.data) }
-      ).catch((error) => { console.log(error) })
+      ).then(() => {}
+      ).catch(() => {})
       commit('setAuthUser', false)
     },
     setUnauthorized ({commit}) {
@@ -222,7 +219,6 @@ export const store = new Vuex.Store({
       axios.post('/auth/user/sections?token=' + state.authUser.token
       ).then(
         (response) => {
-          console.log(response.data)
           commit('setLoadings', {'item': 'loadAuthUserSections', 'value': false})
           commit('setAuthUserSections', response.data.sections)
         }
@@ -232,7 +228,6 @@ export const store = new Vuex.Store({
           if (error.response.status === 401) {
             dispatch('setUnauthorized')
           }
-          console.log(error)
         }
       )
     },
@@ -241,7 +236,6 @@ export const store = new Vuex.Store({
       axios.post('/auth/user/sections/' + payload + '?token=' + state.authUser.token
       ).then(
         (response) => {
-          console.log(response.data)
           commit('setUserData', {'portalid': payload, 'data': response.data.sections})
         }
       ).catch(
@@ -250,7 +244,6 @@ export const store = new Vuex.Store({
           if (error.response.status === 401) {
             dispatch('setUnauthorized')
           }
-          console.log(error)
         }
       )
     },
@@ -259,7 +252,6 @@ export const store = new Vuex.Store({
       axios.post('/auth/section/users/' + payload + '?token=' + state.authUser.token
       ).then(
         (response) => {
-          console.log(response.data)
           commit('setSectionData', {'classid': payload, 'data': response.data.section})
         }
       ).catch(
@@ -268,7 +260,6 @@ export const store = new Vuex.Store({
           if (error.response.status === 401) {
             dispatch('setUnauthorized')
           }
-          console.log(error)
         }
       )
     }

@@ -12,7 +12,7 @@
       </v-content>
     </main>    
     <v-footer class="footer pa-2">
-      <code>>> Website under development stage. More features coming up! <a target="_blank" href="https://google.com"><img class="footer-pic" height="20px" src="/static/GitHub-Mark-32px.png" alt="Github"></a></code>
+      <code>>> Website under development stage. More features coming up! <a target="_blank" href="https://github.com/iam-raihan/aiub-community.frontend"><img class="footer-pic" height="20px" src="/static/GitHub-Mark-32px.png" alt="Github"></a></code>
     </v-footer>
   </v-app>
 </template>
