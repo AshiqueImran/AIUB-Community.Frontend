@@ -53,7 +53,7 @@
               outline round large
               color="accent"
               target="_blank"
-              href="https://www.youtube.com/watch?v=nbmJnCHXaW8">
+              href="https://youtu.be/BHBLHvq0_BA">
               <v-icon left>video_library</v-icon>
               short Tutorial
             </v-btn>
